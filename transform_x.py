@@ -29,3 +29,7 @@ def disTransform(x, tran=1):
     
     return(xnew)
     
+if __name__ == '__main__':
+    ## test example here
+    print "add : please test example for this function"
+    
