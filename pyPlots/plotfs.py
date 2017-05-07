@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 07 14:58:07 2017
-
-@author: User327
-"""
 
 def plotHist(x, nh=50):
     # http://matplotlib.org/1.2.1/examples/pylab_examples/histogram_demo.html
@@ -31,4 +26,20 @@ def plotHist(x, nh=50):
 def plot1Curve(x,y):
     from pylab import plot
     plot(x, y, color="blue", linewidth=2.5, linestyle='-')
+    
+def frequencyDisPlot(a, flog=0):
+	## a: value list; flog: Flag of LOG transform
+
+    import collections
+    import numpy as np
+    
+    counter=collections.Counter(a)
+    x = counter.values()
+    if flog > 0:
+        x = np.log(x)
+    # print(counter.keys())
+    # print(counter.most_common(3))
+	plotHist(x,nh=100)
+	return(x)
+
     

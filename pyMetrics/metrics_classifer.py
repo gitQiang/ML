@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 06 17:44:12 2017
 
-@author: User327
-"""
 import numpy as np
 
 def auc_hq(y, y_pred, pos_label=0):

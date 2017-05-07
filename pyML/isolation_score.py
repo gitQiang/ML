@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# http://scikit-learn.org/stable/auto_examples/ensemble/plot_isolation_forest.html
+# ref: http://scikit-learn.org/stable/auto_examples/ensemble/plot_isolation_forest.html
 
 def iForestTrain_hq(X, r=0.1):
     import numpy as np

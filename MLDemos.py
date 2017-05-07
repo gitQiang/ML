@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 07 14:36:37 2017
-
-@author: User327
-"""
 
 ### outside functions
 from test_data1 import *

@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 07 14:25:51 2017
 
-@author: User327
-"""
-
-def test_data1():
+def classification_data1():
     from sklearn.datasets import make_classification
     x, y = make_classification(n_samples =100000,
                            n_features = 200, 
@@ -21,8 +16,7 @@ def test_data1():
     y1= y[int(0.8*len(y)):]
     return(x0, y0, x1, y1)
 
-
-def test_data2():
+def CF_simulation_data1():
     import numpy as np
     ## 10000 customers
     customers = []
@@ -53,7 +47,7 @@ def test_data2():
     np.random.seed(0)
     money = np.random.lognormal(5, 0.5, 100000)
     
-    #打印表中的数据
+    # print to file
     file_object = open('test_data2.csv', 'w')
     #https://www.zhihu.com/question/35455996
     #http://niewj.iteye.com/blog/1679100
@@ -74,6 +68,6 @@ def test_data2():
         file_object.write(tmp1.encode('utf-8') + '\n')
     file_object.close()
 
-#test_data2()
-    
+if __name__ == '__main__':
+    print 'add each example for each function'
     
