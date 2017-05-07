@@ -10,7 +10,6 @@ def pearsonr_hq(X, y, cut=0.05):
         subs[i] = (pearsonr(X[:,i], y)[1] < cut)
     return(subs)
     
-
 def mic_hq(X, y, cut=0.2):
     from minepy import MINE
     m = MINE()
@@ -21,7 +20,6 @@ def mic_hq(X, y, cut=0.2):
         subs[i] = (m.mic() < cut)
     return(subs)
      
-
 def RFcross_hq(X, y):
     ### RF cross validation =====================
     from sklearn.cross_validation import cross_val_score, ShuffleSplit
@@ -38,7 +36,6 @@ def RFcross_hq(X, y):
         scores.append(round(np.mean(score), 3))
     return scores
 
-
 def linearCoe_hq(X, y, cut=0.05):
     ## linear model coefficient based=====
     from sklearn.feature_selection import f_regression
@@ -47,7 +44,6 @@ def linearCoe_hq(X, y, cut=0.05):
     subs[pval < cut] = True
     return(subs)
 
-
 def lasso_hq(X, y, alpha=0.3):
     ## feature select based on Lasso=====
     from sklearn.linear_model import RandomizedLasso
@@ -55,14 +51,12 @@ def lasso_hq(X, y, alpha=0.3):
     rlasso.fit(X, y)
     return(rlasso.scores_)
 
-    
 def Ridge_hq(X, y, alpha=2):
     ### feature select based on Ridge=====
     from sklearn.linear_model import Ridge
     ridge = Ridge(alpha=alpha)
     ridge.fit(X,y)
     return(ridge.coef_)
-	
     
 def RFgini_hq(X, y):
     ## RF gini importance ===
@@ -70,7 +64,6 @@ def RFgini_hq(X, y):
     rf = RandomForestRegressor()
     rf.fit(X, y)
     return(rf.feature_importances_)
-
 
 def rfShuffle_hq(X, Y):
     ## shuffle orders of one feature===
@@ -90,16 +83,14 @@ def rfShuffle_hq(X, Y):
             shuff_acc = r2_score(Y_test, rf.predict(X_t))
             scores.append((acc-shuff_acc)/acc)
     return(scores)
-
-    
+   
 def randomLasso_hq(X, y, alpha=0.025):
     ### random lasso or logistic regression =======
     from sklearn.linear_model import RandomizedLasso
     rlasso = RandomizedLasso(alpha=alpha)
     rlasso.fit(X, y)
     return(rlasso.scores_)
-
-    
+ 
 def RFE_hq(X, y):
     ### RFE method====
     from sklearn.feature_selection import RFE
@@ -110,7 +101,6 @@ def RFE_hq(X, y):
     rfe = RFE(lr, n_features_to_select=1)
     rfe.fit(X,y)
     return(rfe.ranking_)
-
 
 def testFeatureSelect1():
     ## test ======
@@ -123,51 +113,64 @@ def testFeatureSelect1():
     t1= timeit.default_timer()
     a1 = pearsonr_hq(X,y)
     t2 = timeit.default_timer()
+    print 'feature selection based on pearson corr, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a2 = mic_hq(X,y)
     t2 = timeit.default_timer()
+    print 'feature selection based on Maximal Information Coefficient, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a3 = RFcross_hq(X, y)
     t2 = timeit.default_timer()
+    print 'feature selection based on randomforest cross validation, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a4 = linearCoe_hq(X, y)
     t2 = timeit.default_timer()
+    print 'feature selection based on linear regression Coefficient, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a5 = lasso_hq(X, y)
     t2 = timeit.default_timer()
+    print 'feature selection based on Lasso method, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a6 = Ridge_hq(X, y)
     t2 = timeit.default_timer()
+    print 'feature selection based on Ridge method, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a7 = RFgini_hq(X, y)
     t2 = timeit.default_timer()
+    print 'feature selection based on randomforest gini coefficient, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a8 = rfShuffle_hq(X, y)
     t2 = timeit.default_timer()
+    print 'feature selection based on shuffle randomforest, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a9 = randomLasso_hq(X, y)
     t2 = timeit.default_timer()
+    print 'feature selection based on random lasso, running time is:'
     print t2-t1
     
     t1= timeit.default_timer()
     a10 = RFE_hq(X, y)
     t2 = timeit.default_timer()
+    print 'feature selection based on RFE based on linear regression, running time is:'
     print t2-t1
     
+    
+if __name__ == '__main__':
+    testFeatureSelect1()
     
